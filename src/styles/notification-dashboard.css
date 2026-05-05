@@ -1,0 +1,328 @@
+.dashboard-shell {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(125, 211, 252, 0.18), transparent 28%),
+    radial-gradient(circle at 85% 0%, rgba(240, 171, 252, 0.14), transparent 24%),
+    linear-gradient(135deg, #090b12 0%, #111827 44%, #0b1220 100%);
+}
+
+.dashboard-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(125, 211, 252, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240, 171, 252, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 76%);
+}
+
+.ambient {
+  position: fixed;
+  width: 34vw;
+  max-width: 520px;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  filter: blur(72px);
+  opacity: 0.18;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
+.ambient-one {
+  left: -12vw;
+  top: 18vh;
+  background: #7dd3fc;
+}
+
+.ambient-two {
+  right: -10vw;
+  bottom: 12vh;
+  background: #f0abfc;
+}
+
+.topbar,
+.hero-panel,
+.toolbar-panel,
+.notification-card,
+.empty-state {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.brand-mark,
+.glass-icon,
+.mark-read {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: #e5f6ff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+.page-title {
+  font-size: clamp(1.6rem, 4vw, 3.3rem);
+  line-height: 1;
+  background: linear-gradient(90deg, #ffffff 0%, #7dd3fc 28%, #f0abfc 54%, #86efac 78%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: title-reveal 720ms ease both, text-shimmer 5s linear 900ms infinite;
+}
+
+.nav-action {
+  min-height: 42px;
+  background: linear-gradient(135deg, #0284c7, #a855f7);
+  box-shadow: 0 16px 34px rgba(14, 165, 233, 0.26);
+}
+
+.hero-panel {
+  min-height: 220px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  align-items: end;
+  gap: 28px;
+  padding: clamp(22px, 4vw, 42px);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  transform: perspective(1200px) rotateX(0.8deg);
+}
+
+.hero-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.1), transparent 36%);
+  transform: translateX(-100%) skewX(-18deg);
+  animation: panel-sheen 6s ease-in-out infinite;
+}
+
+.hero-panel::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 6px;
+  background: linear-gradient(90deg, #7dd3fc, #f0abfc, #86efac);
+}
+
+.hero-copy {
+  max-width: 760px;
+}
+
+.hero-copy h2 {
+  font-size: clamp(2rem, 5vw, 4.8rem);
+  line-height: 0.98;
+  margin-bottom: 16px;
+  animation: title-reveal 760ms ease 80ms both;
+}
+
+.metric-row {
+  justify-content: flex-end;
+}
+
+.metric-card {
+  min-width: 132px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  transform-style: preserve-3d;
+}
+
+.metric-card:hover {
+  transform: perspective(700px) translateY(-5px) rotateX(5deg);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+}
+
+.toolbar-panel {
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-group .MuiToggleButton-root {
+  min-width: 104px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.72);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.filter-group .MuiToggleButton-root:hover,
+.filter-group .Mui-selected {
+  transform: translateY(-2px);
+  border-color: rgba(125, 211, 252, 0.45);
+  background: rgba(125, 211, 252, 0.12);
+  color: #e0f2fe;
+}
+
+.notification-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  perspective: 1400px;
+}
+
+.notification-card {
+  min-height: 232px;
+  padding: 18px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease, background 240ms ease;
+  transform-style: preserve-3d;
+}
+
+.notification-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--accent, #7dd3fc);
+  opacity: 0.85;
+}
+
+.notification-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 18%, rgba(255, 255, 255, 0.12), transparent 42%);
+  transform: translateX(-130%) skewX(-18deg);
+}
+
+.notification-card.unread {
+  border-color: color-mix(in srgb, var(--accent, #7dd3fc) 38%, rgba(255, 255, 255, 0.12));
+}
+
+.notification-card:hover {
+  transform: perspective(900px) translateY(-9px) rotateX(4deg) rotateY(-3deg);
+  box-shadow: 0 36px 96px rgba(0, 0, 0, 0.42), 0 14px 40px rgba(14, 165, 233, 0.14);
+}
+
+.notification-card:hover::after {
+  animation: panel-sheen 850ms ease;
+}
+
+.card-title {
+  font-size: 1.24rem;
+  line-height: 1.22;
+  overflow-wrap: anywhere;
+}
+
+.card-subtext {
+  margin-top: 8px;
+}
+
+.depth-line {
+  width: 64px;
+  height: 4px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--accent, #7dd3fc), transparent);
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  min-height: 220px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+@keyframes panel-sheen {
+  from {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+
+  to {
+    transform: translateX(160%) skewX(-18deg);
+  }
+}
+
+@keyframes title-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes text-shimmer {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+@media (max-width: 980px) {
+  .hero-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-row {
+    justify-content: flex-start;
+  }
+
+  .notification-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .notification-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-group .MuiToggleButton-root {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 0;
+  }
+}

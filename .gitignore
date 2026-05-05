@@ -1,0 +1,8 @@
+node_modules
+.next
+.venv
+out
+dist
+.env*
+*.log
+__pycache__
